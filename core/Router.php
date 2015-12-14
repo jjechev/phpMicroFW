@@ -20,6 +20,10 @@ class Router
         self::$URN = $_SERVER['REQUEST_URI'];
         self::$URN = substr(self::$URN, 1);
 
+        if (stripos(self::$URN,"?") !== false){
+            self::$URN = substr(self::$URN,0,stripos(self::$URN,"?"));
+        }
+
         if (substr(self::$URN, -1, 1) == "/") {
             self::$URN = substr(self::$URN, 0, -1);
         }
