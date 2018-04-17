@@ -6,7 +6,7 @@ class View
     public static function template($templateName, $data1215326 = array())
     {
 
-        $file = '../views/' . $templateName . '.tmpl.php';
+        $file = '../views/' . $templateName . '.tpl.php';
 
         extract($data1215326);
         unset($data1215326);

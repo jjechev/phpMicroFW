@@ -10,12 +10,12 @@ class Router
 
     public function init()
     {
-        self::getURN();
-        self::getControllerAndMethod();
+        self::prepareURN();
+        self::prepareControllerAndMethod();
         self::dispatcher();
     }
 
-    private static function getURN()
+    private static function prepareURN()
     {
         self::$URN = $_SERVER['REQUEST_URI'];
         self::$URN = substr(self::$URN, 1);
@@ -30,7 +30,7 @@ class Router
         self::$URNParts = explode('/', self::$URN);
     }
 
-    private static function getControllerAndMethod()
+    private static function prepareControllerAndMethod()
     {
         if (isset(self::$URNParts[0]) && self::$URNParts[0] != '') {
             self::$_controller = self::$URNParts[0];
@@ -47,6 +47,8 @@ class Router
 
         unset(self::$URNParts[0]);
         unset(self::$URNParts[1]);
+        
+        array_values(self::$URNParts);
     }
 
     private static function dispatcher()
